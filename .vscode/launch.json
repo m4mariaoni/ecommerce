@@ -1,0 +1,36 @@
+/* {
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "chrome",
+            "request": "launch",
+            "name": "Launch Chrome against localhost",
+            "url": "http://localhost:8080",
+            "webRoot": "${workspaceFolder}"
+        }
+    ]
+} */
+
+
+{
+    "version": "0.2.0",
+    "configurations": [
+      {
+        "name": "Attach to Node.js Process",
+        "type": "node",
+        "request": "attach",
+        "port": 9229, // Adjust port if your app listens on a different port
+        "address": "localhost", // Modify if your Express.js app runs on a different machine
+        "localRoot": "${workspaceFolder}",
+        "remoteRoot": ".",
+        "sourceMaps": true, // Enable source maps for better debugging experience
+        //"outFiles": ["**/*.js"], // Include all JavaScript files for debugging
+        "outFiles": ["${workspaceFolder}/**/*.js"]
+        //"program": "${workspaceFolder}/index.js"
+      }
+    ]
+  }
+  

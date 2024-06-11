@@ -1,0 +1,145 @@
+swagger: "2.0"
+
+info:
+  description: "e-commerce REST API"
+  version: "1.0.0"
+  title: "E-commerce REST API"
+
+schemes: 
+  - http
+
+host: localhost:3000
+
+basePath: "/"
+
+paths:
+  /auth/register:
+    post:
+      tags:
+        - auth
+      summary: "Register a new user"
+      description: "Register a new user"
+      consumes:
+        - "application/json"
+      produces:
+        - "application/json"
+      parameters:
+        - in: body
+          name: body
+          required: true
+          schema:
+            $ref: '#/components/schemas/Auth'
+      responses:
+        200:
+          description: 200 Success
+        409:
+          description: 409 Conflict
+        500:
+          description: 500 Internal Server Error
+  /auth/login:
+    post:
+      tags:
+        - auth
+      summary: "Login to a user account"
+      description: "Login to a user account"
+      consumes:
+        - "application/json"
+      produces:
+        - "application/json"
+      parameters:
+        - in: body
+          name: body
+          required: true
+          schema:
+            $ref: '#/components/schemas/Login'
+      responses:
+        200:
+          description: 200 Success
+        401:
+          description: 401 Unauthorized
+        500:
+          description: 500 Internal Server Error
+  /users/{userId}:
+    get:
+      tags:
+        - user
+      summary: "Get user record"
+      description: "Get user record"
+      produces:
+        - "application/json"
+      parameters:
+        - name: userId
+          in: path
+          required: true
+          type: string
+      responses:
+        200:
+          description: 200 Success
+        500:
+          description: 500 Internal Server Error
+    put:
+      tags:
+        - user
+      summary: "Update user record"
+      description: "Update user record"
+      consumes:
+        - "application/json"
+      produces:
+        - "application/json"
+      parameters:
+        - name: userId
+          in: path
+          required: true
+          type: string
+        - in: body
+          name: body
+          required: true
+          schema:
+            $ref: '#/components/schemas/User'
+      responses:
+        200:
+          description: 200 Success
+        500:
+          description: 500 Internal Server Error
+components:
+  schemas:
+    Auth:
+      type: object
+      required:
+        - name
+        - email
+        - password
+        - address
+        - gender
+      properties:
+        name:
+          type: string
+          example: Maria Oni
+        email:
+          type: string
+          format: email
+          example: johndoe@example.com
+        password:
+          type: string
+          format: password
+          example: strongpassword123
+        address:
+          type: string
+          example: 1 road lagos
+        gender:
+          type: char
+          example: F
+    Login:
+      type: object
+      required:
+        - email
+        - password
+      properties:
+        email:
+          type: string
+          format: email
+          example: test@mail.com
+        password:
+          type: string
+          format: password
+          example: password
